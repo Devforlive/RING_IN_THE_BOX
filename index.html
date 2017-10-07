@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WHERE`S_THE_RING?</title>
+<SCRIPT LANGUAGE="JavaScript">
+
+var RNumber;
+var RTries;
+limit = 4;
+function Random() {
+today = new Date();
+num = today.getTime();
+num = Math.round(Math.abs(Math.sin(num) * 1000000)) % limit;
+return num;
+}
+function Init(){
+RNumber = Random();
+RTries = 0;
+document.FGame.Output.value='RING in the BOX between 0 and ' + (limit-1) +' Guess the box....and press OK!';
+document.FGame.Tries.value=RTries;
+document.FGame.HighLow.value='';
+document.FGame.Input.value='';
+}
+function Game(Number) {
+if(Number==RNumber) {
+RTries++;
+document.FGame.Output.value='You guessed it in ' + RTries + ' tries! It was ' + RNumber + '! Hit Restart to play again.';
+document.FGame.HighLow.value='Got It!';
+}
+else {
+RTries++;
+document.FGame.Output.value='Nope, ' + Number + ' Try again';
+document.FGame.HighLow.value=(RNumber > Number) ? ':(' : ':(';
+document.FGame.Tries.value=RTries;
+   }
+}
+
+</SCRIPT>
+
+</head>
+
+<body>
+<center>
+<FORM NAME="FGame">
+<INPUT TYPE="txt" NAME="Output" VALUE="" Size="70"><br>
+<INPUT TYPE="txt" NAME="Input" VALUE='' Size="20">
+BOX number:
+<INPUT TYPE="txt" NAME="HighLow" VALUE='' Size="20">
+You guessed:
+<INPUT TYPE="txt" NAME="Tries"  VALUE="0" SIZE="3"> Times.<br>
+<INPUT TYPE="button" NAME="one"  VALUE="  1  " OnClick="FGame.Input.value += 1">
+<INPUT TYPE="button" NAME="one"  VALUE="  2  " OnClick="FGame.Input.value += 2">
+<INPUT TYPE="button" NAME="one"  VALUE="  3  " OnClick="FGame.Input.value += 3"><br>
+
+<INPUT TYPE="button" NAME="one"  VALUE="  0  " OnClick="FGame.Input.value += 0">
+<INPUT TYPE="button" NAME="DoIt" VALUE=" OK!  " OnClick="Game(FGame.Input.value); FGame.Input.value=''"><br>
+<INPUT TYPE="button" NAME="init" VALUE="      Start/Restart     " OnClick="Init()">
+</FORM>
+</center>
+</body>
+</html>
+
+
